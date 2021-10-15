@@ -8,6 +8,12 @@ interface Student {
     number: number
 }
 
+interface Report {
+    name: string
+    description?: string
+    uri: string
+}
+
 const students: Student[] = [
     {
         name: "Tatiana Costa",
@@ -26,16 +32,35 @@ const students: Student[] = [
     }
 ]
 
+const reports: Report[] = [
+    {
+        name: "Stage 1",
+        description: "Project Proposal",
+        uri: "G_32_stage1.pdf"
+    }
+]
+
 const IndexPage: React.FC = () => {
     const backdropImageSrc = 'https://images.unsplash.com/photo-1447078806655-40579c2520d6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80'
 
     const studentCards = React.useMemo(() => {
         return students.map(st => (
-            <div className="flex-1 bg-gray-800 rounded-md py-10 px-16">
+            <div className="flex-1 bg-gray-800 rounded-md py-10 px-16 shadow-md">
                 <h1 className="font-bold text-2xl">{st.name}</h1>
-                <p>{emailToRepr(st.email)}</p>
-                <p>Student n. {st.number}</p>
+                <div className="text-gray-300">
+                    <p>{emailToRepr(st.email)}</p>
+                    <p>Student n. {st.number}</p>
+                </div>
             </div>
+        ))
+    }, [])
+
+    const reportCards = React.useMemo(() => {
+        return reports.map(r => (
+            <a className="bg-gray-800 hover:bg-gray-700 transition duration-100 rounded-md py-10 px-16 shadow-md" href={r.uri}>
+                <h1 className="font-bold text-2xl">{r.name}</h1>
+                {r.description && <h2 className="text-xl text-gray-300">{r.description}</h2>}
+            </a>
         ))
     }, [])
 
@@ -56,15 +81,17 @@ const IndexPage: React.FC = () => {
             <div className="flex flex-col text-gray-200 px-16 md:px-32 lg:px-72 mt-16 mb-16">
                 <div className="flex-1 text-4xl font-bold"><span className="text-yellow-500">—</span> About us</div>
                 <div className="flex-1 mt-5">
-                    We are group 32 from lab class 4 of the 21/22 Person-Machine Interfaces class.
-                    <div className="flex flex-col md:flex-row justify-center mt-16 space-y-5 md:space-y-0 md:space-x-5">
+                    We are group 32 from lab class 4 of the 21/22 Person-Machine Interaction class.
+                    <div className="flex flex-col lg:flex-row justify-center mt-16 space-y-5 lg:space-y-0 lg:space-x-5">
                         {studentCards}
                     </div>
                 </div>
                 <div className="flex-1 text-4xl font-bold mt-16"><span className="text-yellow-500">—</span> Reports</div>
                 <div className="flex-1 mt-5">
                     Here you can find the up-to-date reports for each phase of our project.
-                    <p className="text-xl">(Coming Soon)</p>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 mt-16">
+                        {reportCards}
+                    </div>
                 </div>
                 <div className="flex-1 text-4xl font-bold mt-16"><span className="text-yellow-500">—</span> Design</div>
                 <div className="flex-1 mt-5">
