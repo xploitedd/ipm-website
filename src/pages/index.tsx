@@ -29,6 +29,11 @@ const students: Student[] = [
         name: "Lucia Salvador",
         email: "l.salvador@campus.fct.unl.pt",
         number: 62309
+    },
+    {
+        name: "Iván Mora",
+        email: "i.mora@campus.fct.unl.pt",
+        number: 62448
     }
 ]
 
@@ -45,7 +50,7 @@ const IndexPage: React.FC = () => {
 
     const studentCards = React.useMemo(() => {
         return students.map(st => (
-            <div className="flex-1 bg-gray-800 rounded-md py-10 px-16 shadow-md">
+            <div className="bg-gray-800 rounded-md py-10 px-16 shadow-md">
                 <h1 className="font-bold text-2xl">{st.name}</h1>
                 <div className="text-gray-300">
                     <p>{emailToRepr(st.email)}</p>
@@ -82,14 +87,14 @@ const IndexPage: React.FC = () => {
                 <div className="flex-1 text-4xl font-bold"><span className="text-yellow-500">—</span> About us</div>
                 <div className="flex-1 mt-5">
                     We are group 32 from lab class 4 of the 21/22 Person-Machine Interaction class.
-                    <div className="flex flex-col lg:flex-row justify-center mt-16 space-y-5 lg:space-y-0 lg:space-x-5">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16">
                         {studentCards}
                     </div>
                 </div>
                 <div className="flex-1 text-4xl font-bold mt-16"><span className="text-yellow-500">—</span> Reports</div>
                 <div className="flex-1 mt-5">
                     Here you can find the up-to-date reports for each phase of our project.
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 mt-16">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16">
                         {reportCards}
                     </div>
                 </div>
