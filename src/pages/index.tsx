@@ -5,7 +5,8 @@ import Helmet from "react-helmet"
 interface Student {
     name: string
     email: string
-    number: number
+    number: number,
+    assignments?: Report[]
 }
 
 interface Report {
@@ -18,22 +19,38 @@ const students: Student[] = [
     {
         name: "Tatiana Costa",
         email: "tp.costa@campus.fct.unl.pt",
-        number: 46752
+        number: 46752,
+        assignments: [
+            { name: 'Assignment 1', uri: 'Assignment_1_46752.pdf' },
+            { name: 'Assignment 2', uri: '' }
+        ]
     },
     {
         name: "Ricardo Margalhau",
         email: "r.margalhau@campus.fct.unl.pt",
-        number: 62241
+        number: 62241,
+        assignments: [
+            { name: 'Assignment 1', uri: 'Assignment_1_62441.pdf' },
+            { name: 'Assignment 2', uri: '' }
+        ]
     },
     {
         name: "Lucia Salvador",
         email: "l.salvador@campus.fct.unl.pt",
-        number: 62309
+        number: 62309,
+        assignments: [
+            { name: 'Assignment 1', uri: 'Assignment_1_62309.pdf' },
+            { name: 'Assignment 2', uri: '' }
+        ]
     },
     {
         name: "Iván Mora",
         email: "i.mora@campus.fct.unl.pt",
-        number: 62448
+        number: 62448,
+        assignments: [
+            { name: 'Assignment 1', uri: 'Assignment_1_62448.pdf' },
+            { name: 'Assignment 2', uri: '' }
+        ]
     }
 ]
 
@@ -50,11 +67,16 @@ const IndexPage: React.FC = () => {
 
     const studentCards = React.useMemo(() => {
         return students.map(st => (
-            <div className="bg-gray-800 rounded-md py-10 px-16 shadow-md">
-                <h1 className="font-bold text-2xl">{st.name}</h1>
-                <div className="text-gray-300">
+            <div className="flex-grow mx-5 my-5 bg-gray-800 rounded-md shadow-md">
+                <h1 className="font-bold text-2xl mx-16 mt-10">{st.name}</h1>
+                <div className="text-gray-300 mx-16">
                     <p>{emailToRepr(st.email)}</p>
                     <p>Student n. {st.number}</p>
+                </div>
+                <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 bg-gray-700 mt-10 rounded-b-md px-16 py-5">
+                    {st.assignments && st.assignments.length > 0 ?
+                        st.assignments.map(as => <a href={as.uri} className="bg-gray-900 py-3 px-8 rounded-md shadow-md">{as.name}</a>)
+                        : <p className="text-xl">No assignments to show</p>}
                 </div>
             </div>
         ))
@@ -87,7 +109,7 @@ const IndexPage: React.FC = () => {
                 <div className="flex-1 text-4xl font-bold"><span className="text-yellow-500">—</span> About us</div>
                 <div className="flex-1 mt-5">
                     We are group 32 from lab class 4 of the 21/22 Person-Machine Interaction class.
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-5 mt-16">
+                    <div className="flex flex-wrap justify-evenly mt-16">
                         {studentCards}
                     </div>
                 </div>
