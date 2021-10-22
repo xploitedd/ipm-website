@@ -59,6 +59,11 @@ const reports: Report[] = [
         name: "Stage 1",
         description: "Project Proposal",
         uri: "G_32_stage1.pdf"
+    },
+    {
+        name: "Stage 2",
+        description: "User & Task Analysis",
+        uri: "G_32_stage2.pdf"
     }
 ]
 
