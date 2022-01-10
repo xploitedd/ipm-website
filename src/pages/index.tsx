@@ -69,6 +69,26 @@ const reports: Report[] = [
         name: "Stage 3",
         description: "1st Prototype",
         uri: "G_32_stage3.pdf"
+    },
+    {
+        name: "Stage 4",
+        description: "Functional Prototype",
+        uri: "G_32_stage4.pdf"
+    },
+    {
+        name: "Stage 5 - Sent",
+        description: "Heuristic Evaluation",
+        uri: "G_32_stage5.pdf"
+    },
+    {
+        name: "Stage 5 - Received",
+        description: "Heuristic Evaluation",
+        uri: "G_31_stage5.pdf"
+    },
+    {
+        name: "Stage 6",
+        description: "Evaluation Results",
+        uri: "G_32_stage6.pdf"
     }
 ]
 
